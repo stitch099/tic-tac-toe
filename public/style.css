@@ -47,4 +47,7 @@ section {
     box-shadow: 2px 2px 2px 2px #e22030;
     border: 2px solid #e22030;
 }
- 
+
+.win {
+    color: #e22030 !important;
+}

@@ -1,4 +1,6 @@
 const statusDisplay = document.querySelector('.game-status');
+const cell = document.querySelectorAll('.cell');
+
 
 let gameActive = true;
 let currentPlayer = "X";
@@ -43,14 +45,26 @@ function handleResultValidation() {
         }
         if (a === b && b === c) {
             roundWon = true;
-            break
+            console.log(winCondition);
+            for (let j = 0; j <= winCondition.length; j++) {
+                let index = winCondition[j];
+                let winCell = document.getElementById(`${index}`);
+                console.log(index);
+                winCell.classList.add('win');
+            }
+            break;
         }
+
     }
 
+
     if (roundWon) {
+
         statusDisplay.innerHTML = winningMessage();
-        gameActive = false;
+        gameActive = false; 
         return;
+      
+        
     }
 
     let roundDraw = !gameState.includes("");
@@ -79,10 +93,45 @@ function handleRestartGame() {
     gameActive = true;
     currentPlayer = "X";
     gameState = ["", "", "", "", "", "", "", "", ""];
+    for (let z = 0; z <= 7; z++) {
+    let list = document.getElementById(`${z}`);
+    list.classList.remove('win');
+    }
     statusDisplay.innerHTML = currentPlayerTurn();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
 }
 
+            // switch(roundWon){
+            //     case 0:
+            //         console.log(winningWays[0])
+            //     break;
+            //     case 1:
+            //         console.log(winningWays[1])
+            //     break;
+            //     case 2:
+            //         console.log(winningWays[2])
+            //     break;
+            //     case 3:
+            //         console.log(winningWays[3])
+            //     break;
+            //     case 4:
+            //         console.log(winningWays[4])
+            //     break;
+            //     case 5:
+            //         console.log(winningWays[5])
+            //     break;
+            //     case 6:
+            //         console.log(winningWays[6])
+            //     break;
+            //     case 7:
+            //         console.log(winningWays[7])
+            //     break;
+            //     case 8:
+            //         console.log(winningWays[8])
+            //     break;
+            //     default:
+            //         return;
+            // }
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 document.querySelector('.game-restart').addEventListener('click', handleRestartGame);
