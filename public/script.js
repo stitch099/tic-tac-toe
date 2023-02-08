@@ -44,27 +44,26 @@ function handleResultValidation() {
             continue;
         }
         if (a === b && b === c) {
-            roundWon = true;
             console.log(winCondition);
             for (let j = 0; j <= winCondition.length; j++) {
                 let index = winCondition[j];
                 let winCell = document.getElementById(`${index}`);
                 console.log(index);
                 winCell.classList.add('win');
-            }
-            break;
+            };
+            roundWon = true;
+            console.log(winningMessage());
+            break
+
         }
 
     }
 
-
-    if (roundWon) {
-
+    if (roundWon === true) {
+        console.log(winningMessage());
         statusDisplay.innerHTML = winningMessage();
         gameActive = false; 
         return;
-      
-        
     }
 
     let roundDraw = !gameState.includes("");
