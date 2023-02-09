@@ -47,19 +47,24 @@ function handleResultValidation() {
             console.log(winCondition);
             for (let j = 0; j <= winCondition.length; j++) {
                 let index = winCondition[j];
-                let winCell = document.getElementById(`${index}`);
-                console.log(index);
-                winCell.classList.add('win');
+                try{
+                    let winCell = document.querySelector(`#cell-${index}`);
+                    console.log(winCell);
+                    winCell.classList.add('win');
+                } catch(e){
+                    console.log("stitch: check this here");
+                    console.log(e);
+                };
+
             };
             roundWon = true;
-            console.log(winningMessage());
             break
 
         }
 
     }
 
-    if (roundWon === true) {
+    if (roundWon == true) {
         console.log(winningMessage());
         statusDisplay.innerHTML = winningMessage();
         gameActive = false; 
@@ -92,9 +97,9 @@ function handleRestartGame() {
     gameActive = true;
     currentPlayer = "X";
     gameState = ["", "", "", "", "", "", "", "", ""];
-    for (let z = 0; z <= 7; z++) {
-    let list = document.getElementById(`${z}`);
-    list.classList.remove('win');
+    for(let z = 0; z <= 8; z++){
+        let list = document.querySelector(`#cell-${z}`);
+        list.classList.remove('win');
     }
     statusDisplay.innerHTML = currentPlayerTurn();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");

@@ -4,6 +4,7 @@ body {
 
 section {
     text-align: center;
+    user-select: none;
 }
 
 .game-title {
